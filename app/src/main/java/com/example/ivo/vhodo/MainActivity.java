@@ -1,9 +1,7 @@
 package com.example.ivo.vhodo;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -69,9 +67,29 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        Intent intent = null;
+        switch (item.getItemId()) {
+            case R.id.nav_account:
+                intent = new Intent(MainActivity.this, AccountActivity.class);
+                break;
+            case R.id.nav_neighbour:
+                break;
+            case R.id.nav_mechanic:
+                break;
+            case R.id.nav_report:
+                intent = new Intent(MainActivity.this, ReportActivity.class);
+                break;
+            case R.id.nav_aboutinfo:
+                break;
+            case R.id.nav_logout:
+                break;
+        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+        if(intent != null)
+            startActivity(intent);
         return true;
     }
 }
