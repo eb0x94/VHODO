@@ -9,4 +9,70 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.ivo.vhodo.AccountActivity">
 
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/debt_button"
+        android:id="@+id/debts_button"
+        android:onClick="onAccountButtonClicked"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="135dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/payment_button"
+        android:onClick="onAccountButtonClicked"
+        android:id="@+id/payments_button"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/debts_button"
+        android:layout_alignStart="@+id/debts_button"
+        android:layout_marginTop="35dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/balance_button"
+        android:onClick="onAccountButtonClicked"
+        android:id="@+id/balance_button"
+        android:layout_below="@+id/payments_button"
+        android:layout_alignLeft="@+id/payments_button"
+        android:layout_alignStart="@+id/payments_button"
+        android:layout_marginTop="35dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onAccountButtonClicked"
+        android:text="@string/logout"
+        android:id="@+id/logout_button"
+        android:layout_below="@+id/balance_button"
+        android:layout_alignLeft="@+id/balance_button"
+        android:layout_alignStart="@+id/balance_button"
+        android:layout_marginTop="35dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/account_textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/landlord_button"
+        android:onClick="onAccountButtonClicked"
+        android:id="@+id/landlord_button"
+        android:layout_alignTop="@+id/logout_button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:visibility="invisible" />
 </RelativeLayout>

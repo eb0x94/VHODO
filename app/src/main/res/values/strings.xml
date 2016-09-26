@@ -13,4 +13,9 @@
     <string name="action_settings">Settings</string>
     <string name="take_picture">Take picture</string>
     <string name="send_problem">Send problem</string>
+    <string name="debt_button">Debts</string>
+    <string name="payment_button">Payments</string>
+    <string name="balance_button">Balance</string>
+    <string name="landlord_button">Landlord</string>
+
 </resources>
