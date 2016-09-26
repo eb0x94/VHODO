@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.File;
@@ -34,8 +35,27 @@ public class ReportActivity extends AppCompatActivity {
                 captureImage();
                 break;
             case R.id.send_problem_button:
+                sendProblem();
                 break;
         }
+    }
+
+    private void sendProblem() {
+        //TODO: implement the send problem function
+        EditText editText = (EditText) findViewById(R.id.problem_text);
+        int size = editText.getText().length();
+        boolean isSuccess =false;
+        String toastText = "No text was entered, please specify the problem";
+        if (size == 0){
+            //default toastText
+        }else if (size > 0 && size < 5){
+            toastText = "Text is too short, 5 characters minimum";
+        }else{
+            toastText = "Successfully sent the report to the message board.";
+            isSuccess = true;
+        }
+        Toast.makeText(getApplicationContext(),toastText,Toast.LENGTH_LONG).show();
+        if (isSuccess) finish();
     }
 
     private void captureImage() {
