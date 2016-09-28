@@ -1,6 +1,9 @@
 package com.example.ivo.vhodo;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -8,13 +11,23 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by vilimir on 28.09.16.
  */
 public class DBHelper extends SQLiteOpenHelper {
-
+    //user types
+    public static final int USER_NORMAL = 0;
+    public static final int USER_LANDLORD = 1;
+    //problem fixed state
+    public static final int PROBLEM_FIXED = 0;
+    public static final int PROBLEM_IN_PROCESS = 1;
+    public static final int PROBLEM_NOT_FIXED = 2;
+    public static final int PROBLEM_UNFIXABLE = 3;
+    //database name
     public static final String DB_NAME = "vhodo_db";
+    //database tables
     public static final String MECHANIC_CONTACTS_TABLE_NAME = "mechanics";
     public static final String NEIGHBOURS_CONTACTS_TABLE_NAME = "neighbours";
     public static final String MESSAGES_BOARD_TABLE_NAME = "msgboard";
     public static final String USERS_TABLE_NAME = "users";
     public static final String PROBLEMS_TABLE_NAME = "problems";
+    //database columns
     public static final String ID_COLUMN_NAME = "id";
     public static final String PASS_COLUMN_NAME = "pass";
     public static final String NAME_COLUMN_NAME = "name";
@@ -23,6 +36,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String PROBLEM_COLUMN_NAME = "problem";
     public static final String USERNAME_COLUMN_NAME = "username";
     public static final String MESSAGE_COLUMN_NAME = "message";
+    public static final String ISFIXED_COLUMN_NAME = "isfixed";
+    public static final String TYPE_COLUMN_NAME = "type";
+
     public DBHelper (Context context){
         super(context,DB_NAME,null,1);
     }
@@ -32,16 +48,16 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(String.format("create table %s (%s integer primary key, %s text,%s text,%s text,%s text)",
                 NEIGHBOURS_CONTACTS_TABLE_NAME,
                 ID_COLUMN_NAME,NAME_COLUMN_NAME,PHONE_COLUMN_NAME,EMAIL_COLUMN_NAME,USERS_TABLE_NAME));
-        db.execSQL(String.format("create table %s (%s integer primary key, %s text,%s text)",
+        db.execSQL(String.format("create table %s (%s integer primary key, %s text,%s text,%s integer)",
                 USERS_TABLE_NAME,
-                ID_COLUMN_NAME,USERNAME_COLUMN_NAME,PASS_COLUMN_NAME));
-        db.execSQL(String.format("create table %s (%s integer primary key, %s text,%s text)",
+                ID_COLUMN_NAME,USERNAME_COLUMN_NAME,PASS_COLUMN_NAME,TYPE_COLUMN_NAME));
+        db.execSQL(String.format("create table %s (%s integer primary key, %s text,%s text,%s text)",
                 MECHANIC_CONTACTS_TABLE_NAME,
-                ID_COLUMN_NAME,NAME_COLUMN_NAME,PHONE_COLUMN_NAME));
+                ID_COLUMN_NAME,NAME_COLUMN_NAME,PHONE_COLUMN_NAME, TYPE_COLUMN_NAME));
         //TODO need to find a way to get to problem images so it's not going to have images for now.
-        db.execSQL(String.format("create table %s (%s integer primary key, %s text,%s text)",
+        db.execSQL(String.format("create table %s (%s integer primary key, %s text,%s text,%s integer)",
                 PROBLEMS_TABLE_NAME,
-                ID_COLUMN_NAME,NAME_COLUMN_NAME,PROBLEM_COLUMN_NAME));
+                ID_COLUMN_NAME,USERNAME_COLUMN_NAME,PROBLEM_COLUMN_NAME,ISFIXED_COLUMN_NAME));
         db.execSQL(String.format("create table %s (%s integer primary key, %s text,%s text)",
                 MESSAGES_BOARD_TABLE_NAME,
                 ID_COLUMN_NAME,USERNAME_COLUMN_NAME,MESSAGE_COLUMN_NAME));
@@ -53,22 +69,59 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean addNewUser(int id,String name, String pass){
-        // TODO: 28.09.16
+    public boolean addNewUser(int id,String username, String pass,int type){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(ID_COLUMN_NAME,id);
+        cv.put(USERNAME_COLUMN_NAME,username);
+        cv.put(PASS_COLUMN_NAME,pass);
+        cv.put(TYPE_COLUMN_NAME,type);
+        db.insert(USERS_TABLE_NAME,null,cv);
         return true;
     }
 
     public boolean addNewNeighbour(int id, String name, String phone, String email, String username){
-        // TODO: 28.09.16
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(ID_COLUMN_NAME,id);
+        cv.put(NAME_COLUMN_NAME,name);
+        cv.put(PHONE_COLUMN_NAME,phone);
+        cv.put(EMAIL_COLUMN_NAME,email);
+        cv.put(USERNAME_COLUMN_NAME,username);
+        db.insert(NEIGHBOURS_CONTACTS_TABLE_NAME,null,cv);
         return true;
     }
 
-    public boolean addNewProblem(int id, String user, String message){
-        // TODO: 28.09.16
+    public boolean addNewProblem(int id, String user, String problem, int state){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(ID_COLUMN_NAME,id);
+        cv.put(USERNAME_COLUMN_NAME,user);
+        cv.put(PROBLEM_COLUMN_NAME,problem);
+        cv.put(ISFIXED_COLUMN_NAME,state);
+        db.insert(PROBLEMS_TABLE_NAME,null,cv);
         return true;
     }
-    public boolean addNewMechanic(int id, String name, String phone){
-        // TODO: 28.09.16
+    public boolean addNewMechanic(int id, String name, String phone, String type){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues() ;
+        cv.put(ID_COLUMN_NAME,id);
+        cv.put(NAME_COLUMN_NAME,name);
+        cv.put(PHONE_COLUMN_NAME,phone);
+        cv.put(TYPE_COLUMN_NAME,type);
+        db.insert(MECHANIC_CONTACTS_TABLE_NAME,null,cv);
         return true;
     }
+    public Cursor getData(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from contacts where id="+id+"", null );
+        return res;
+    }
+
+    public int numberOfRows(String tableName){
+        SQLiteDatabase db = this.getReadableDatabase();
+        int numRows = (int) DatabaseUtils.queryNumEntries(db, tableName);
+        return numRows;
+    }
+
 }
