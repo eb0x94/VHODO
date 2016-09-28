@@ -14,9 +14,18 @@ public class AccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account);
 
         //Checking for admin/landlord account
-        isLandlord = true;//for programming sake
-        if (isLandlord = true) {
+        //TODO get the user type to determine the accesability
+        isLandlord = isSuperUser(1); // get userType from the database.
+        if (isLandlord) {
             landlordVisible();
+        }
+    }
+
+    private boolean isSuperUser(int usertype) {
+        if (usertype == 1) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -28,14 +37,19 @@ public class AccountActivity extends AppCompatActivity {
     public void onAccountButtonClicked(View view) {
         switch (view.getId()) {
             case R.id.debts_button:
+                //TODO get the user debts.
                 break;
             case R.id.payments_button:
+                //TODO get the user payments
                 break;
             case R.id.balance_button:
+                //TODO get the user balance
                 break;
             case R.id.logout_button:
+                //TODO log out the user.
                 break;
             case R.id.landlord_button:
+                //TODO expand this activity with landlord funtionalities on another activity
                 break;
         }
     }
