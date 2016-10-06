@@ -2,6 +2,7 @@
     <string name="app_name">VHODO</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="vhodo_title">VHOD.A</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="account">Account</string>
     <string name="report">Report a problem</string>
@@ -18,5 +19,6 @@
     <string name="balance_button">Balance</string>
     <string name="landlord_button">Landlord</string>
     <string name="login">Login</string>
+    <string name="signup">Sign up</string>
 
 </resources>

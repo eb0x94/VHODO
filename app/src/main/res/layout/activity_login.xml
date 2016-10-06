@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.ivo.vhodo.LoginActivity">
+    tools:context="com.example.ivo.vhodo.LoginActivity"
+    android:id="@+id/signupButton">
 
     <EditText
         android:layout_width="wrap_content"
@@ -15,10 +16,10 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/passwordTextBox"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="136dp"
-        android:hint="password" />
+        android:hint="password"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/userNameTextBox"
+        android:layout_alignStart="@+id/userNameTextBox" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -36,11 +37,31 @@
         android:layout_height="wrap_content"
         android:text="@string/login"
         android:id="@+id/loginButton"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="57dp"
         android:onClick="onLoginClick"
         android:singleLine="true"
         android:layout_below="@+id/passwordTextBox"
         android:layout_alignLeft="@+id/passwordTextBox"
         android:layout_alignStart="@+id/passwordTextBox" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="60dp"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/vhodo_title"
+        android:id="@+id/titleTextView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/signup"
+        android:onClick="onSignUpClick"
+        android:id="@+id/button"
+        android:layout_alignTop="@+id/loginButton"
+        android:layout_alignRight="@+id/passwordTextBox"
+        android:layout_alignEnd="@+id/passwordTextBox" />
 
 </RelativeLayout>

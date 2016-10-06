@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class PasswordHelper {
     final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
+    public static final int PASSWORD_MIN_LENGTH = 6;
 
     public static String md5get(String pass) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         MessageDigest md = java.security.MessageDigest.getInstance("MD5");

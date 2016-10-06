@@ -1,10 +1,13 @@
 package com.example.ivo.vhodo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.ivo.vhodo.models.PasswordHelper;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText userText;
@@ -32,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         String toastText = "";
         boolean isFail = false;
 
-        if (usernameStr.length() < 5 && userPassStr.length() < 6){
+        if (usernameStr.length() < 5 && userPassStr.length() < PasswordHelper.PASSWORD_MIN_LENGTH){
             toastText = "Please,enter a valid username and password";
             isFail = true;
         }else if (usernameStr.length() < 5){
@@ -50,5 +53,10 @@ public class LoginActivity extends AppCompatActivity {
         //// TODO: if all is valid,LoginHelper to check the user name and pass
 
         Toast.makeText(this,toastText,Toast.LENGTH_SHORT).show();
+    }
+
+    public void onSignUpClick(View view) {
+        Intent intent = new Intent(LoginActivity.this,SignUpActivity.class);
+        startActivity(intent);
     }
 }
