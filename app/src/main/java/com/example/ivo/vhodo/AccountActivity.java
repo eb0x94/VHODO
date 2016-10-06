@@ -7,6 +7,7 @@ import android.widget.Button;
 
 public class AccountActivity extends AppCompatActivity {
     private boolean isLandlord;
+    private DBHelper database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

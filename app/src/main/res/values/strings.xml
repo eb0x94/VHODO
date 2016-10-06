@@ -17,5 +17,6 @@
     <string name="payment_button">Payments</string>
     <string name="balance_button">Balance</string>
     <string name="landlord_button">Landlord</string>
+    <string name="login">Login</string>
 
 </resources>
