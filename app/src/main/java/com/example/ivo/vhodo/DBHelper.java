@@ -154,7 +154,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(PROBLEM_COLUMN_NAME,problem);
         cv.put(ISFIXED_COLUMN_NAME,state);
         db.insert(PROBLEMS_TABLE_NAME,null,cv);
-        return true;
+            return true;
     }
 
     public boolean updateProblem(int id, String user, String problem, int state){
@@ -208,12 +208,13 @@ public class DBHelper extends SQLiteOpenHelper {
         return res;
     }
 
+
     public int numberOfRows(String tableName){
         SQLiteDatabase db = this.getReadableDatabase();
         int numRows = (int) DatabaseUtils.queryNumEntries(db, tableName);
         return numRows;
     }
 
-    //private methods5
-}
+    //private methods
 
+}
