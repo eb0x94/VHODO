@@ -27,6 +27,8 @@ public class SignUpActivity extends AppCompatActivity {
     private Button showPass;
     private boolean isShown;
 
+    //// TODO: eventually redesign the showPass Button...
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +57,11 @@ public class SignUpActivity extends AppCompatActivity {
             isShown = false;
             btn.setText(SHOW_PASS);
             passwordText.setTransformationMethod(new PasswordTransformationMethod());
+            confirmPassText.setTransformationMethod(new PasswordTransformationMethod());
         }else {
             isShown = true;
             passwordText.setTransformationMethod(null);
+            confirmPassText.setTransformationMethod(null);
             btn.setText(HIDE_PASS);
         }
     }
@@ -97,7 +101,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private boolean checkPassword(String password, String confirm) {
         if (password.length() < PasswordHelper.PASSWORD_MIN_LENGTH) {
-            Toast.makeText(this, "Password is must be at least 6 characters", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Password must be at least 6 characters", Toast.LENGTH_LONG).show();
             return false;
         } else if (!password.equals(confirm)) {
             Toast.makeText(this, "Passwords does not match", Toast.LENGTH_LONG).show();
