@@ -6,10 +6,11 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <application android:name=".GlobalData"
+    <application
+        android:name=".GlobalData"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@mipmap/ic_vhoda"
+        android:label="@string/vhodo_title"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -25,7 +26,7 @@
         <activity android:name=".AccountActivity" />
         <activity android:name=".ReportActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".SignUpActivity" />
     </application>
 
 </manifest>
