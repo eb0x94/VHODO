@@ -2,17 +2,11 @@ package com.example.ivo.vhodo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.Toast;
-
 import com.example.ivo.vhodo.models.PasswordHelper;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -114,6 +108,4 @@ public class SignUpActivity extends AppCompatActivity {
         //// TODO: check DB if name is already taken
         return true;
     }
-
-
 }

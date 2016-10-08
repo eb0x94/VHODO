@@ -79,7 +79,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        //// TODO: 8.10.2016 г. Implemet logic for DB Upgrading
     }
 
     //User table methods
@@ -133,7 +133,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean deleteNeigbour(int id){
+    public boolean deleteNeighbour(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(NEIGHBOURS_CONTACTS_TABLE_NAME,ID_COLUMN_NAME + " = ?", new String[]{Integer.toString(id)});
         return true;
@@ -195,6 +195,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.delete(MECHANIC_CONTACTS_TABLE_NAME,ID_COLUMN_NAME + " = ?" , new String[]{Integer.toString(id)});
         return true;
     }
+
     public boolean deleteMechanic(String name){
         SQLiteDatabase db = getWritableDatabase();
         db.delete(MECHANIC_CONTACTS_TABLE_NAME,ID_COLUMN_NAME + " = ?", new String[]{name});
