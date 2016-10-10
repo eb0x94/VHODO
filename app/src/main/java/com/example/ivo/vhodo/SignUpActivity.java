@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.example.ivo.vhodo.models.PasswordHelper;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+
 public class SignUpActivity extends AppCompatActivity {
     private final String SHOW_PASS = "Show pass";
     private final String HIDE_PASS = "Hide pass";
@@ -61,7 +64,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-    public void onSignUpClickTwo(View view) {
+    public void onSignUpClickTwo(View view) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         String name, username, password, confirmPassword, email, phone;
 
         name = nameText.getText().toString();
@@ -74,8 +77,11 @@ public class SignUpActivity extends AppCompatActivity {
         if (!validation(name, username, password, confirmPassword, email, phone)){
             return;
         }
-
-        //// TODO: add acc to DB
+        GlobalData.addUser(GlobalData.getNumberOfRowsInTable(DBHelper.USERS_TABLE_NAME),
+                username,
+                PasswordHelper.md5get(password),
+                name,
+                0);
     }
 
     private boolean validation(String name, String username, String password, String confirmPassword, String email, String phone) {
@@ -84,7 +90,12 @@ public class SignUpActivity extends AppCompatActivity {
             reset();
             return false;
         }
-
+        if (email.length() == 0 && email == null){
+            email = "No email";
+        }
+        if (phone.length() == 0 && phone == null){
+            phone = "No phone";
+        }
         return true;
     }
 

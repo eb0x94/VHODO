@@ -102,4 +102,10 @@ public class GlobalData extends Application {
     public static void updateProblem(int id, String username, String problemDescription, int problemState){
         dbHelper.updateProblem(id, username, problemDescription, problemState);
     }
+
+
+    //additional
+    public static int getNumberOfRowsInTable(String table_name){
+        return dbHelper.numberOfRows(table_name);
+    }
  }
