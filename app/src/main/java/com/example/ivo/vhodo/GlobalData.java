@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.ivo.vhodo.models.User;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +21,15 @@ public class GlobalData extends Application {
     public void onCreate() {
         super.onCreate();
         dbHelper = new DBHelper(getApplicationContext());
-        dbHelper.onCreate(openOrCreateDatabase(DBHelper.DB_NAME,MODE_PRIVATE,null));
+        if (!doesDatabaseExist()) {
+            dbHelper.onCreate(openOrCreateDatabase(DBHelper.DB_NAME, MODE_PRIVATE, null));
+        }
         //Log.d("DB Created","Success");
+    }
+
+    private boolean doesDatabaseExist() {
+        File dbFile = this.getApplicationContext().getDatabasePath(DBHelper.DB_NAME);
+        return dbFile.exists();
     }
 
     //// TODO: 8.10.2016 г. Implement logic for set and get the current user
@@ -94,4 +102,4 @@ public class GlobalData extends Application {
     public static void updateProblem(int id, String username, String problemDescription, int problemState){
         dbHelper.updateProblem(id, username, problemDescription, problemState);
     }
-}
+ }
