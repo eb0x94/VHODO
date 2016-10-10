@@ -108,4 +108,7 @@ public class GlobalData extends Application {
     public static int getNumberOfRowsInTable(String table_name){
         return dbHelper.numberOfRows(table_name);
     }
+    public static String getUserPass(String username){
+        return dbHelper.getUserPass(username);
+    }
  }

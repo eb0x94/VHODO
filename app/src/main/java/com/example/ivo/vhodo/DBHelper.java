@@ -209,6 +209,15 @@ public class DBHelper extends SQLiteOpenHelper {
         return res;
     }
 
+    public String getUserPass(String username){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery
+                (String.format("select * from %s where %s = %s"
+                        ,USERS_TABLE_NAME,USERNAME_COLUMN_NAME,username)
+                        ,null);
+        return res.getString(3);
+    }
+
 
     public int numberOfRows(String tableName){
         SQLiteDatabase db = this.getReadableDatabase();
