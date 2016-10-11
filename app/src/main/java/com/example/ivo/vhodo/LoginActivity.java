@@ -3,13 +3,11 @@ package com.example.ivo.vhodo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ivo.vhodo.tools.LoginHelper;
-import com.example.ivo.vhodo.tools.PasswordHelper;
 import com.example.ivo.vhodo.tools.Status;
 
 import java.io.UnsupportedEncodingException;
@@ -28,17 +26,15 @@ public class LoginActivity extends AppCompatActivity {
         passwordText = (EditText) findViewById(R.id.passwordTextBox);
     }
 
-    public void onLoginClick(View view) {
+    public void onLoginClick(View view) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         String usernameStr = userText.getText().toString();
         String userPassStr = passwordText.getText().toString();
-        if (checkLogin(usernameStr, userPassStr)){
+        if (checkLogin(usernameStr, userPassStr)) {
             // TODO: 11.10.2016 г. Fix the starting of the intent
-            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
-            if (intent != null){
-                startActivity(intent);
-            }
-        }else {
+            startActivity(intent);
+        } else {
             passwordText.setText("");
         }
 
@@ -46,21 +42,21 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private boolean checkLogin(String usernameStr, String userPassStr) {
+    private boolean checkLogin(String usernameStr, String userPassStr) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         Status status = LoginHelper.checkForValidLogin(usernameStr, userPassStr);
 
-        if (status.isShallPass()){
-            Toast.makeText(this,status.getMsg(),Toast.LENGTH_LONG).show();
+        if (status.isShallPass()) {
+            Toast.makeText(this, status.getMsg(), Toast.LENGTH_LONG).show();
             return true;
-        }else {
+        } else {
 
-            Toast.makeText(this,status.getMsg(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, status.getMsg(), Toast.LENGTH_SHORT).show();
             return false;
         }
     }
 
     public void onSignUpClick(View view) {
-        Intent intent = new Intent(LoginActivity.this,SignUpActivity.class);
+        Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
         startActivity(intent);
     }
 }

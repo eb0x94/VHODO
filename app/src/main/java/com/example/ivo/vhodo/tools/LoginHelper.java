@@ -10,14 +10,14 @@ import java.security.NoSuchAlgorithmException;
  */
 public class LoginHelper {
 
-    public static Status checkForValidLogin(String username, String password){
+    public static Status checkForValidLogin(String username, String password) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         String toastMsg = "Login successful";
         boolean isShallPass = true;
 
         if (username.length() < 5 && password.length() < PasswordHelper.PASSWORD_MIN_LENGTH){
             toastMsg = "Please,enter a valid username and password";
             isShallPass = false;
-        }else if (username.length() < 5 || !GlobalData.isUserExisting(username)){
+        }else if (username.length() < 5){
             toastMsg = "Please,enter a valid username";
             isShallPass = false;
         }else if (password.length() < 6){
@@ -25,17 +25,15 @@ public class LoginHelper {
             isShallPass = false;
         }
 
-        try {
-            if (!PasswordHelper.md5get(password).equals(GlobalData.getUserPass(username))){
-                isShallPass = false;
-                toastMsg  = "Password is not valid";
-            }
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+        if (GlobalData.isUserExisting(username)){
+                if (!PasswordHelper.md5get(password).equals(GlobalData.getUserPass(username))){
+                    toastMsg = "Password is not correct";
+                    isShallPass = false;
+                }
+        }else {
+            toastMsg = "Please, enter a valid username";
+            isShallPass = false;
         }
-
 
         return new Status(toastMsg,isShallPass);
     }
