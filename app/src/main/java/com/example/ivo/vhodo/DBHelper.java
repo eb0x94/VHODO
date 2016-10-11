@@ -1,4 +1,4 @@
-package com.example.ivo.vhodo;
+package com.example.ivo.vhodo.tools;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.database.CursorIndexOutOfBoundsException;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.ivo.vhodo.GlobalData;
 
 /**
  * Created by vilimir on 28.09.16.

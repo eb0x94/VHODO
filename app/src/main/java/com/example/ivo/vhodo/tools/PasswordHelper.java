@@ -1,4 +1,4 @@
-package com.example.ivo.vhodo.models;
+package com.example.ivo.vhodo.tools;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

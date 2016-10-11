@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.ivo.vhodo.models.PasswordHelper;
+import com.example.ivo.vhodo.tools.LoginHelper;
+import com.example.ivo.vhodo.tools.PasswordHelper;
+import com.example.ivo.vhodo.tools.Status;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -29,42 +31,32 @@ public class LoginActivity extends AppCompatActivity {
     public void onLoginClick(View view) {
         String usernameStr = userText.getText().toString();
         String userPassStr = passwordText.getText().toString();
-        checkLogin(usernameStr, userPassStr);
+        if (checkLogin(usernameStr, userPassStr)){
+            // TODO: 11.10.2016 г. Fix the starting of the intent
+            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+
+            if (intent != null){
+                startActivity(intent);
+            }
+        }else {
+            passwordText.setText("");
+        }
 
         //// TODO: make intents and start them.
 
     }
 
-    private void checkLogin(String usernameStr, String userPassStr) {
-        String toastText = "Success!";
-        boolean isFail = false;
+    private boolean checkLogin(String usernameStr, String userPassStr) {
+        Status status = LoginHelper.checkForValidLogin(usernameStr, userPassStr);
 
-        if (usernameStr.length() < 5 && userPassStr.length() < PasswordHelper.PASSWORD_MIN_LENGTH){
-            toastText = "Please,enter a valid username and password";
-            isFail = true;
-        }else if (usernameStr.length() < 5){
-            toastText = "Please,enter a valid username";
-            isFail = true;
-        }else if (userPassStr.length() < 6){
-            toastText = "Please,enter a valid password";
-            isFail = true;
+        if (status.isShallPass()){
+            Toast.makeText(this,status.getMsg(),Toast.LENGTH_LONG).show();
+            return true;
+        }else {
+
+            Toast.makeText(this,status.getMsg(),Toast.LENGTH_SHORT).show();
+            return false;
         }
-
-        try {
-            if (!PasswordHelper.md5get(userPassStr).equals(GlobalData.getUserPass(usernameStr))){
-                isFail = true;
-                toastText  = "No match";
-            }
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        //// TODO: if all is valid,LoginHelper to check the user name and pass
-
-        Toast.makeText(this,toastText,Toast.LENGTH_SHORT).show();
-        Log.d("Login",toastText);
     }
 
     public void onSignUpClick(View view) {

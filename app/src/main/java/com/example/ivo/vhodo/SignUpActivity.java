@@ -8,7 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.example.ivo.vhodo.models.PasswordHelper;
+import com.example.ivo.vhodo.tools.PasswordHelper;
+import com.example.ivo.vhodo.tools.DBHelper;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;

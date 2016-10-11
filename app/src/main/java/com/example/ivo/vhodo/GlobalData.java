@@ -1,9 +1,9 @@
 package com.example.ivo.vhodo;
 
 import android.app.Application;
-import android.util.Log;
 
 import com.example.ivo.vhodo.models.User;
+import com.example.ivo.vhodo.tools.DBHelper;
 
 import java.io.File;
 import java.util.ArrayList;
