@@ -16,6 +16,7 @@ public class GlobalData extends Application {
     private static List<User> users;
     private static User currentUser;
     private static DBHelper dbHelper;
+    private static boolean dbExists;
 
     @Override
     public void onCreate() {
@@ -23,13 +24,18 @@ public class GlobalData extends Application {
         dbHelper = new DBHelper(getApplicationContext());
         if (!doesDatabaseExist()) {
             dbHelper.onCreate(openOrCreateDatabase(DBHelper.DB_NAME, MODE_PRIVATE, null));
+            dbExists = true;
         }
         //Log.d("DB Created","Success");
     }
 
     private boolean doesDatabaseExist() {
         File dbFile = this.getApplicationContext().getDatabasePath(DBHelper.DB_NAME);
+        this.dbExists = dbFile.exists();
         return dbFile.exists();
+    }
+    public static boolean getDBExists(){
+       return dbExists;
     }
 
     //// TODO: 8.10.2016 г. Implement logic for set and get the current user

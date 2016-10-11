@@ -3,11 +3,15 @@ package com.example.ivo.vhodo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ivo.vhodo.models.PasswordHelper;
+
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText userText;
@@ -32,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void checkLogin(String usernameStr, String userPassStr) {
-        String toastText = "";
+        String toastText = "Success!";
         boolean isFail = false;
 
         if (usernameStr.length() < 5 && userPassStr.length() < PasswordHelper.PASSWORD_MIN_LENGTH){
@@ -46,13 +50,21 @@ public class LoginActivity extends AppCompatActivity {
             isFail = true;
         }
 
-        if (isFail){
-            passwordText.setText("");
+        try {
+            if (!PasswordHelper.md5get(userPassStr).equals(GlobalData.getUserPass(usernameStr))){
+                isFail = true;
+                toastText  = "No match";
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
 
         //// TODO: if all is valid,LoginHelper to check the user name and pass
 
         Toast.makeText(this,toastText,Toast.LENGTH_SHORT).show();
+        Log.d("Login",toastText);
     }
 
     public void onSignUpClick(View view) {

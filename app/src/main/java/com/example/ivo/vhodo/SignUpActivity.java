@@ -1,5 +1,6 @@
 package com.example.ivo.vhodo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
@@ -82,10 +83,14 @@ public class SignUpActivity extends AppCompatActivity {
                 PasswordHelper.md5get(password),
                 name,
                 0);
+
+        Toast.makeText(this,"Success",Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this,LoginActivity.class);
+        startActivity(intent);
     }
 
     private boolean validation(String name, String username, String password, String confirmPassword, String email, String phone) {
-
+        // TODO: 11.10.16 Check for avaiability of the username 
         if (!checkPassword(password, confirmPassword) || !checkUsername(username)) {
             reset();
             return false;

@@ -51,6 +51,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        if (GlobalData.getDBExists()) return;
         db.execSQL(String.format("create table %s (%s integer primary key,%s text,%s text,%s text,",
                 NEIGHBOURS_CONTACTS_TABLE_NAME,
                 ID_COLUMN_NAME,PHONE_COLUMN_NAME,EMAIL_COLUMN_NAME,USERNAME_COLUMN_NAME) +
@@ -212,10 +213,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public String getUserPass(String username){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery
-                (String.format("select * from %s where %s = %s"
+                (String.format("select * from %s where %s = \'%s\'"
                         ,USERS_TABLE_NAME,USERNAME_COLUMN_NAME,username)
                         ,null);
-        return res.getString(3);
+        res.moveToFirst();
+        String pass = res.getString(2);
+        return pass;
     }
 
 
