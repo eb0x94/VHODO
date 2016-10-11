@@ -3,6 +3,7 @@ package com.example.ivo.vhodo;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -211,16 +212,31 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public String getUserPass(String username){
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery
-                (String.format("select * from %s where %s = \'%s\'"
-                        ,USERS_TABLE_NAME,USERNAME_COLUMN_NAME,username)
-                        ,null);
+        Cursor res = getCursorFromUsersWithUsername(username);
         res.moveToFirst();
         String pass = res.getString(2);
         return pass;
     }
 
+    private Cursor getCursorFromUsersWithUsername(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery
+                (String.format("select * from %s where %s = \'%s\'"
+                        ,USERS_TABLE_NAME,USERNAME_COLUMN_NAME,username)
+                        ,null);
+    }
+
+    public boolean userExists(String username){
+        Cursor res = getCursorFromUsersWithUsername(username);
+        res.moveToFirst();
+        try{
+        res.isNull(1);
+        return true;
+        }
+        catch (CursorIndexOutOfBoundsException e){
+            return false;
+        }
+    }
 
     public int numberOfRows(String tableName){
         SQLiteDatabase db = this.getReadableDatabase();

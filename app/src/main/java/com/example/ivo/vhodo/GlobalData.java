@@ -117,4 +117,8 @@ public class GlobalData extends Application {
     public static String getUserPass(String username){
         return dbHelper.getUserPass(username);
     }
+
+    public static boolean isUserExisting(String username){
+        return dbHelper.userExists(username);
+    }
  }

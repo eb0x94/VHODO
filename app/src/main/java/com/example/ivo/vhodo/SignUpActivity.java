@@ -66,6 +66,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     public void onSignUpClickTwo(View view) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+
         String name, username, password, confirmPassword, email, phone;
 
         name = nameText.getText().toString();
@@ -90,15 +91,18 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private boolean validation(String name, String username, String password, String confirmPassword, String email, String phone) {
-        // TODO: 11.10.16 Check for avaiability of the username 
+        // TODO: 11.10.16 Check for avaiability of the username -- done
+        if (GlobalData.isUserExisting(username)){
+            return false;
+        }
         if (!checkPassword(password, confirmPassword) || !checkUsername(username)) {
             reset();
             return false;
         }
-        if (email.length() == 0 && email == null){
+        if (email.length() == 0  || email == null){
             email = "No email";
         }
-        if (phone.length() == 0 && phone == null){
+        if (phone.length() == 0 || phone == null){
             phone = "No phone";
         }
         return true;
