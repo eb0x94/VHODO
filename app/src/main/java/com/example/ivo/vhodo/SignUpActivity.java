@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.ivo.vhodo.tools.LoginHelper;
 import com.example.ivo.vhodo.tools.PasswordHelper;
 import com.example.ivo.vhodo.tools.DBHelper;
 
@@ -93,9 +95,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     private boolean validation(String name, String username, String password, String confirmPassword, String email, String phone) {
         // TODO: 11.10.16 Check for avaiability of the username -- done
-        if (GlobalData.isUserExisting(username)){
-            return false;
-        }
         if (!checkPassword(password, confirmPassword) || !checkUsername(username)) {
             reset();
             return false;
@@ -126,7 +125,13 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private boolean checkUsername(String username) {
-        //// TODO: check DB if name is already taken
+        if (GlobalData.isUserExisting(username)){
+            Toast.makeText(this,"Username is already taken",Toast.LENGTH_LONG).show();
+            return false;
+        }else if (username.length() < LoginHelper.USERNAME_MIN_LENGTH){
+            Toast.makeText(this,"Username must be 5 or more characters",Toast.LENGTH_LONG).show();
+            return false;
+        }
         return true;
     }
 }

@@ -31,7 +31,9 @@ public class LoginActivity extends AppCompatActivity {
         String userPassStr = passwordText.getText().toString();
         if (checkLogin(usernameStr, userPassStr)) {
             // TODO: 11.10.2016 г. Fix the starting of the intent
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
             startActivity(intent);
         } else {

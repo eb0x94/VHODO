@@ -9,18 +9,19 @@ import java.security.NoSuchAlgorithmException;
  * Created by Ivo on 11.10.2016 г..
  */
 public class LoginHelper {
+    public static final int USERNAME_MIN_LENGTH = 5;
 
     public static Status checkForValidLogin(String username, String password) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         String toastMsg = "Login successful";
         boolean isShallPass = true;
 
-        if (username.length() < 5 && password.length() < PasswordHelper.PASSWORD_MIN_LENGTH){
+        if (username.length() < LoginHelper.USERNAME_MIN_LENGTH && password.length() < PasswordHelper.PASSWORD_MIN_LENGTH){
             toastMsg = "Please,enter a valid username and password";
             isShallPass = false;
-        }else if (username.length() < 5){
+        }else if (username.length() < LoginHelper.USERNAME_MIN_LENGTH){
             toastMsg = "Please,enter a valid username";
             isShallPass = false;
-        }else if (password.length() < 6){
+        }else if (password.length() < PasswordHelper.PASSWORD_MIN_LENGTH){
             toastMsg = "Please,enter a valid password";
             isShallPass = false;
         }
