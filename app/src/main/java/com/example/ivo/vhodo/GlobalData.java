@@ -2,6 +2,7 @@ package com.example.ivo.vhodo;
 
 import android.app.Application;
 
+import com.example.ivo.vhodo.models.Message;
 import com.example.ivo.vhodo.models.User;
 import com.example.ivo.vhodo.tools.DBHelper;
 
@@ -120,5 +121,9 @@ public class GlobalData extends Application {
 
     public static boolean isUserExisting(String username){
         return dbHelper.userExists(username);
+    }
+
+    public static List<Message> getMessages(){
+        return dbHelper.getAllMessages();
     }
  }

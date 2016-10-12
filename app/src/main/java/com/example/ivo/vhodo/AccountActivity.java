@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.ivo.vhodo.adapters.MessageAdapter;
+import com.example.ivo.vhodo.models.Message;
 import com.example.ivo.vhodo.tools.DBHelper;
 
 public class AccountActivity extends AppCompatActivity {

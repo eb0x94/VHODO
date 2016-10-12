@@ -7,8 +7,13 @@ import android.database.CursorIndexOutOfBoundsException;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.icu.util.Calendar;
 
 import com.example.ivo.vhodo.GlobalData;
+import com.example.ivo.vhodo.models.Message;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by vilimir on 28.09.16.
@@ -49,6 +54,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String MESSAGE_COLUMN_NAME = "message";
     public static final String ISFIXED_COLUMN_NAME = "isfixed";
     public static final String TYPE_COLUMN_NAME = "type";
+    public static final String DATETIME_COLUMN_NAME = "dt";
 
     //Constructor
     public DBHelper (Context context){
@@ -76,9 +82,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 ID_COLUMN_NAME,USERNAME_COLUMN_NAME,PROBLEM_COLUMN_NAME,ISFIXED_COLUMN_NAME) +
                         String.format("foreign key(%s) references %s(%s))",
                                 USERNAME_COLUMN_NAME,USERS_TABLE_NAME,USERNAME_COLUMN_NAME));
-        db.execSQL(String.format("create table %s (%s integer primary key, %s text,%s text,",
+        db.execSQL(String.format("create table %s (%s integer primary key, %s text,%s text, %s integer, %s text,",
                 MESSAGES_BOARD_TABLE_NAME,
-                ID_COLUMN_NAME,USERNAME_COLUMN_NAME,MESSAGE_COLUMN_NAME)+
+                ID_COLUMN_NAME,USERNAME_COLUMN_NAME,MESSAGE_COLUMN_NAME,TYPE_COLUMN_NAME,DATETIME_COLUMN_NAME)+
                 String.format("foreign key(%s) references %s(%s))",
                         USERNAME_COLUMN_NAME,USERS_TABLE_NAME,USERNAME_COLUMN_NAME));
 
@@ -247,6 +253,42 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         int numRows = (int) DatabaseUtils.queryNumEntries(db, tableName);
         return numRows;
+    }
+
+    //messages
+    public void addMessage(int id,String user, String message,Calendar datetime, int type ){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues() ;
+        cv.put(ID_COLUMN_NAME,id);
+        cv.put(MESSAGE_COLUMN_NAME,message);
+        cv.put(DATETIME_COLUMN_NAME, String.valueOf(datetime));
+        cv.put(USERNAME_COLUMN_NAME,user);
+        cv.put(TYPE_COLUMN_NAME,type);
+        db.insert(MECHANIC_CONTACTS_TABLE_NAME,null,cv);
+    }
+
+     public List<Message> getAllMessages(){
+         List<Message> msgs = new ArrayList<>();
+         SQLiteDatabase db = getReadableDatabase();
+         Cursor res =  db.rawQuery("select * from " + MESSAGES_BOARD_TABLE_NAME , null);
+         if (res.getCount() == 0){
+             return new ArrayList<>();
+         }
+         res.moveToLast();
+         while(res.isFirst()){
+             collectDataFromMessageTable(msgs, res);
+             res.moveToPrevious();
+         }
+         collectDataFromMessageTable(msgs,res);
+         return msgs;
+     }
+
+    private void collectDataFromMessageTable(List<Message> msgs, Cursor res) {
+        String username = res.getString(1);
+        String message = res.getString(2);
+        int type = res.getInt(3);
+        String datetime =res.getString(4);
+        msgs.add(new Message(message,type,username,datetime));
     }
 
     //private methods

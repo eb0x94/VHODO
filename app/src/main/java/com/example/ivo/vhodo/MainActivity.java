@@ -7,12 +7,27 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.ivo.vhodo.adapters.MessageAdapter;
+import com.example.ivo.vhodo.models.Message;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private List<Message> messageList;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +44,18 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.mainRecyclerView);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        messageList = getMessages();
+        messageList.add(new Message("Kur",1,"PICHKA","lelina"));
+        messageList.add(new Message("Kur",2,"PICHKA","lelina"));
+        messageList.add(new Message("Kur",3,"PICHKA","lelina"));
+        messageList.add(new Message("Kur",1,"PICHKA","lelina"));
+        mAdapter = new MessageAdapter(messageList);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -92,5 +119,9 @@ public class MainActivity extends AppCompatActivity
         if (intent != null)
             startActivity(intent);
         return true;
+    }
+
+    private List<Message> getMessages(){
+        return GlobalData.getMessages();
     }
 }

@@ -4,5 +4,7 @@
     <color name="colorPrimaryDark">#99BAFF</color>
     <color name="colorAccent">#CB2EFF</color>
     <color name="colorAccentDark">#C01EFF</color>
-    <color name="newColor">#C92C2C</color>
+    <color name="problemBackgroundColor">#FF919C</color>
+    <color name="messageBackgroundColor">#d1d7ff</color>
+    <color name="messageAlertBackgroundColor">#FBFFB5</color>
 </resources>
