@@ -82,13 +82,14 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_aboutinfo:
                 break;
             case R.id.nav_logout:
+                intent = new Intent(MainActivity.this, LoginActivity.class);
                 break;
         }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        if(intent != null)
+        if (intent != null)
             startActivity(intent);
         return true;
     }
