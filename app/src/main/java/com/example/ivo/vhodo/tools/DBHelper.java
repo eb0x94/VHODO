@@ -15,6 +15,9 @@ import com.example.ivo.vhodo.GlobalData;
  */
 public class DBHelper extends SQLiteOpenHelper {
 
+    //column numbers for different tables
+    
+
     //user types
     public static final int USER_NORMAL = 0;
     public static final int USER_LANDLORD = 1;

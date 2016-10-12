@@ -33,9 +33,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".models.NeighbourActivity" />
-        <activity android:name=".models.MechanicActivity" />
-        <activity android:name=".models.AboutActivity"></activity>
+        <activity android:name=".NeighbourActivity" />
+        <activity android:name=".MechanicActivity" />
+        <activity android:name=".AboutActivity"></activity>
     </application>
 
 </manifest>
