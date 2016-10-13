@@ -42,11 +42,11 @@ public class Message {
     public int getMsgColor() {
         switch (this.msgType) {
             case 0:
-                return R.color.messageBackgroundColor;
+                return Color.parseColor("#DEFCFF");
             case 1:
-                return R.color.messageAlertBackgroundColor;
+                return Color.parseColor("#FFE8E8");
             case 2:
-                return R.color.problemBackgroundColor;
+                return Color.parseColor("#F9FFDB");
         }
         return -1;
     }

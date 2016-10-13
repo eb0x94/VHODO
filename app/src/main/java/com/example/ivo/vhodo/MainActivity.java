@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
         messageList = getMessages();
         messageList.add(new Message("Kur",1,"PICHKA","lelina"));
         messageList.add(new Message("Kur",2,"PICHKA","lelina"));
-        messageList.add(new Message("Kur",3,"PICHKA","lelina"));
+        messageList.add(new Message("Kur",0,"PICHKA","lelina"));
         messageList.add(new Message("Kur",1,"PICHKA","lelina"));
         mAdapter = new MessageAdapter(messageList);
         mRecyclerView.setAdapter(mAdapter);

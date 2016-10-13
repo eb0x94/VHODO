@@ -20,5 +20,8 @@
     <string name="landlord_button">Landlord</string>
     <string name="login">Login</string>
     <string name="signup">Sign up</string>
+    <string name="problemBackgroundColor">#FF919C</string>
+    <string name="messageBackgroundColor">#d1d7ff</string>
+    <string name="messageAlertBackgroundColor">#FBFFB5</string>
 
 </resources>
