@@ -100,13 +100,16 @@ public class MainActivity extends AppCompatActivity
                 intent = new Intent(MainActivity.this, AccountActivity.class);
                 break;
             case R.id.nav_neighbour:
+                intent = new Intent(MainActivity.this, NeighbourActivity.class);
                 break;
             case R.id.nav_mechanic:
+                intent = new Intent(MainActivity.this, MechanicActivity.class);
                 break;
             case R.id.nav_report:
                 intent = new Intent(MainActivity.this, ReportActivity.class);
                 break;
             case R.id.nav_aboutinfo:
+                intent = new Intent(MainActivity.this,AboutActivity.class);
                 break;
             case R.id.nav_logout:
                 intent = new Intent(MainActivity.this, LoginActivity.class);
