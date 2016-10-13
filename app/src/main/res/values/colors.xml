@@ -2,8 +2,8 @@
 <resources>
     <color name="colorPrimary">#99DAFF</color>
     <color name="colorPrimaryDark">#99BAFF</color>
-    <color name="colorAccent">#CB2EFF</color>
-    <color name="colorAccentDark">#C01EFF</color>
+    <color name="colorAccent">#666B6B</color>
+    <color name="colorAccentDark">#DCE8E8</color>
     <color name="problemBackgroundColor">#FF919C</color>
     <color name="messageBackgroundColor">#d1d7ff</color>
     <color name="messageAlertBackgroundColor">#FBFFB5</color>

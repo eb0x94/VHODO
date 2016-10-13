@@ -23,5 +23,6 @@
     <string name="problemBackgroundColor">#FF919C</string>
     <string name="messageBackgroundColor">#d1d7ff</string>
     <string name="messageAlertBackgroundColor">#FBFFB5</string>
+    <string name="callButton">Call</string>
 
 </resources>
