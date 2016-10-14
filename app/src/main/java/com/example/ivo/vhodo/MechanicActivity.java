@@ -11,6 +11,7 @@ import com.example.ivo.vhodo.adapters.MessageAdapter;
 import com.example.ivo.vhodo.models.Mechanic;
 import com.example.ivo.vhodo.models.Message;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MechanicActivity extends AppCompatActivity {
@@ -26,6 +27,8 @@ public class MechanicActivity extends AppCompatActivity {
 
         mRecyclerView = (RecyclerView) findViewById(R.id.mechanicRecyclerView);
         mRecyclerView.setHasFixedSize(true);
+
+        mechanicList = new ArrayList<>();
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);

@@ -45,19 +45,28 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="call"
+                android:width="80dp"
+                android:height="10dp"
+                android:background="@drawable/custom_button"
+                android:drawableLeft="@mipmap/ic_call_black_24dp"
+                android:paddingLeft="10dp"
+                android:text="@string/callButton"
                 android:id="@+id/callNeighbourButton"
                 android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignLeft="@+id/sendNeighbourEmailButton"
+                android:layout_alignStart="@+id/sendNeighbourEmailButton" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:paddingLeft="10dp"
+                android:background="@drawable/custom_button"
+                android:drawableLeft="@mipmap/ic_mail_outline_black_24dp"
                 android:text="send mail"
                 android:id="@+id/sendNeighbourEmailButton"
-                android:layout_below="@+id/callNeighbourButton"
+                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
         </RelativeLayout>

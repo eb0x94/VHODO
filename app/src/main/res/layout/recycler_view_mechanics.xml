@@ -42,11 +42,15 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="true"
+            android:background="@drawable/custom_button"
             android:drawableLeft="@mipmap/ic_call_black_24dp"
+            android:paddingLeft="10dp"
             android:text="@string/callButton"
             android:id="@+id/callerButton"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_margin="10dp" />
     </RelativeLayout>
 </RelativeLayout>
