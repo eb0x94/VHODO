@@ -50,10 +50,10 @@ public class MainActivity extends AppCompatActivity
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         messageList = getMessages();
-        messageList.add(new Message("Kur",1,"PICHKA","lelina"));
-        messageList.add(new Message("Kur",2,"PICHKA","lelina"));
-        messageList.add(new Message("Kur",0,"PICHKA","lelina"));
-        messageList.add(new Message("Kur",1,"PICHKA","lelina"));
+        messageList.add(new Message("Hora, plyha mnogo mirishe, viknete Filka da izchisti, molq.",2,"Petko Ivanov","10/10/2016 12:48"));
+        messageList.add(new Message("Ima umrql plyh mejdu etajite",1,"Petko Ivanov","10/10/2016 10:36"));
+        messageList.add(new Message("Nqkoi za kafe?",0,"Petkana Ivanova","09/10/2016 16:42"));
+        messageList.add(new Message("Utre v 9:00 shte se pryska protiv plyhove",1,"Alexandyr Petkov","09/10/2016 13:37"));
         mAdapter = new MessageAdapter(messageList);
         mRecyclerView.setAdapter(mAdapter);
     }

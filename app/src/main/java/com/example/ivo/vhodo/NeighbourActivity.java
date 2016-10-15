@@ -36,7 +36,7 @@ public class NeighbourActivity extends AppCompatActivity {
         for (int i = 0; i < 5; i++) {
             neighbourList.add(new Neighbour("Pesho" + i, "99999999","gosho@" + i + ".com"));
         }
-        mAdapter = new NeighbourAdapter(neighbourList);
+        mAdapter = new NeighbourAdapter(neighbourList,getApplicationContext());
         mRecyclerView.setAdapter(mAdapter);
     }
 }

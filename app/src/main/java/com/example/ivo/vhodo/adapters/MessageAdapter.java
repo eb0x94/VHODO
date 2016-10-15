@@ -65,7 +65,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         holder.msgText.setText(mDataset.get(position).getMsgTxt());
         holder.userText.setText(mDataset.get(position).getUsername() + " :");
         holder.dateAndTimeText.setText(mDataset.get(position).getDateAndTime());
-        holder.parentLayout.setBackgroundColor(mDataset.get(position).getMsgColor());
+        holder.parentLayout.setBackgroundResource(mDataset.get(position).getMsgColor());
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)

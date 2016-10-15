@@ -26,6 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/take_picture"
+        android:background="@drawable/custom_problem_color"
         android:id="@+id/take_picture_button"
         android:layout_alignTop="@+id/send_problem_button"
         android:layout_alignParentLeft="true"
@@ -34,6 +35,7 @@
 
     <Button
         android:layout_width="wrap_content"
+        android:background="@drawable/custom_problem_color"
         android:layout_height="wrap_content"
         android:text="@string/send_problem"
         android:id="@+id/send_problem_button"
@@ -41,5 +43,13 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:onClick="onButtonClicked"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageView"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/take_picture_button"
+        android:layout_alignEnd="@+id/take_picture_button" />
 
 </RelativeLayout>

@@ -1,6 +1,8 @@
 package com.example.ivo.vhodo;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -9,10 +11,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -29,7 +35,6 @@ public class ReportActivity extends AppCompatActivity {
     }
 
     public void onButtonClicked(View view) {
-        int asd = R.id.take_picture_button;
         switch (view.getId()) {
             case R.id.take_picture_button:
                 captureImage();
@@ -53,6 +58,7 @@ public class ReportActivity extends AppCompatActivity {
         }else{
             toastText = "Successfully sent the report to the message board.";
             isSuccess = true;
+            GlobalData.addMessage(GlobalData.getCurrentUser().getUsername(),editText.getText().toString(), DateFormat.getDateTimeInstance().format(new Date()),2);
         }
         Toast.makeText(getApplicationContext(),toastText,Toast.LENGTH_LONG).show();
         if (isSuccess) finish();
@@ -67,6 +73,8 @@ public class ReportActivity extends AppCompatActivity {
 
         // start the image capture Intent
         startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
+
+
     }
 
     private static File getOutputMediaFile(int type) {
@@ -108,6 +116,8 @@ public class ReportActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 //image was taken
                 resultText = "Image captured successfully";
+                ImageView iv = (ImageView) findViewById(R.id.imageView);
+                iv.setImageBitmap(BitmapFactory.decodeFile(getOutputMediaFile(MEDIA_TYPE_IMAGE).getAbsolutePath()));
             } else if (resultCode == RESULT_CANCELED) {
                 // user cancelled Image capture
                 resultText = "You have cancelled image capture";

@@ -1,6 +1,7 @@
 package com.example.ivo.vhodo;
 
 import android.app.Application;
+import android.icu.util.Calendar;
 
 import com.example.ivo.vhodo.models.Message;
 import com.example.ivo.vhodo.models.User;
@@ -70,6 +71,12 @@ public class GlobalData extends Application {
         dbHelper.addNewProblem(id, user, problemDescription, problemState);
     }
 
+    public static void addMessage(String username, String message, String datetime,int type){
+
+        dbHelper.addMessage(getNumberOfRowsInTable(DBHelper.MESSAGES_BOARD_TABLE_NAME) + 1,
+                username,message,datetime,type);
+    }
+
 
     // methods for removing data from DB
     public static void deleteUser(int id){
@@ -125,5 +132,18 @@ public class GlobalData extends Application {
 
     public static List<Message> getMessages(){
         return dbHelper.getAllMessages();
+    }
+
+    public static void  setCurrentUser(User user){
+        currentUser = user;
+    }
+
+    public static User getUser(String username){
+        for (User user : users) {
+            if (user.getName().equals(username)){
+                return user;
+            }
+        }
+        return null;
     }
  }

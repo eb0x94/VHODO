@@ -256,7 +256,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     //messages
-    public void addMessage(int id,String user, String message,Calendar datetime, int type ){
+    public void addMessage(int id, String user, String message, String datetime, int type ){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues() ;
         cv.put(ID_COLUMN_NAME,id);

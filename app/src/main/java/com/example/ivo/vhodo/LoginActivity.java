@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ivo.vhodo.models.User;
 import com.example.ivo.vhodo.tools.LoginHelper;
 import com.example.ivo.vhodo.tools.Status;
 
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         String userPassStr = passwordText.getText().toString();
         if (checkLogin(usernameStr, userPassStr)) {
             // TODO: 11.10.2016 г. Fix the starting of the intent
+  //          GlobalData.setCurrentUser(GlobalData.getUser(usernameStr));
 
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

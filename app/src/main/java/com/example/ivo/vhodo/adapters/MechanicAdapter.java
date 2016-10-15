@@ -1,5 +1,8 @@
 package com.example.ivo.vhodo.adapters;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +20,7 @@ import java.util.List;
  */
 public class MechanicAdapter extends RecyclerView.Adapter<MechanicAdapter.ViewHolder> {
     private List<Mechanic> mDataset;
-
+    private Context ctx;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -27,6 +30,7 @@ public class MechanicAdapter extends RecyclerView.Adapter<MechanicAdapter.ViewHo
         public TextView mechanicName;
         public TextView mechanicPhone;
         public TextView mechanicDescription;
+        public Button callMechanicButton;
 
         public ViewHolder(View v) {
             super(v);
@@ -34,12 +38,14 @@ public class MechanicAdapter extends RecyclerView.Adapter<MechanicAdapter.ViewHo
             mechanicName = (TextView) v.findViewById(R.id.mechanicName);
             mechanicPhone = (TextView) v.findViewById(R.id.mechanicPhone);
             mechanicDescription = (TextView) v.findViewById(R.id.mechanicDescrition);
+            callMechanicButton = (Button) v.findViewById(R.id.callMechanicButton);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MechanicAdapter(List<Mechanic> myDataset) {
+    public MechanicAdapter(List<Mechanic> myDataset, Context context) {
         this.mDataset = myDataset;
+        this.ctx = context;
     }
 
     // Create new views (invoked by the layout manager)
@@ -57,13 +63,27 @@ public class MechanicAdapter extends RecyclerView.Adapter<MechanicAdapter.ViewHo
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         //holder.mechanicName.setText(mDataset[position]);
         holder.mechanicName.setText(mDataset.get(position).getName() + " :");
         holder.mechanicPhone.setText(mDataset.get(position).getPhone());
         holder.mechanicDescription.setText(mDataset.get(position).getType());
+        holder.callMechanicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onCallMechanicButtonClicked(position);
+            }
+        });
+    }
+
+    private void onCallMechanicButtonClicked(int position) {
+        String phone =  mDataset.get(position).getPhone();
+        Uri number = Uri.parse("tel:" + phone);
+        Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
+        callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        ctx.startActivity(callIntent);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
