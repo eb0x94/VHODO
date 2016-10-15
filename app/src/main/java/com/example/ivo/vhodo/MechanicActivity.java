@@ -33,10 +33,11 @@ public class MechanicActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mechanicList.add(new Mechanic("Stefan Energoto Ltd.","0894555","Pipa jicite"));
-        mechanicList.add(new Mechanic("Gosho Vodolazo Ltd.","0894555","Pipa vodata"));
-        mechanicList.add(new Mechanic("Desi Parketo Ltd.","0894555","Pipa podo"));
-        mechanicList.add(new Mechanic("Mitko Gipsokartono Ltd.","0894555","Pipa tavano i stenite"));
+        mechanicList.add(new Mechanic("Stefan Energoto Ltd.","0894555666","Electric master"));
+        mechanicList.add(new Mechanic("Gosho Vodolaza Ltd.","0894555777","Water bender"));
+        mechanicList.add(new Mechanic("Miro Podolski Ltd.","0894555888","Floor master"));
+        mechanicList.add(new Mechanic("Pesho Ltd.","0894555999","Everything else master"));
+        mechanicList.add(new Mechanic("Filka","0897223456","Master of brooms"));
 
         mAdapter = new MechanicAdapter(mechanicList,getApplicationContext());
         mRecyclerView.setAdapter(mAdapter);
