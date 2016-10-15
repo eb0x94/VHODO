@@ -6,3 +6,8 @@
 Github link: https://github.com/eb0x94/VHODO
 
 Contributors: eb0x94 è viliom1
+
+The application is something like social network for neighbours in the apartment building,where they can signalise about problems and issues.
+It has Navigation Drawer, which has sections for connecting with other neighbours and mechanics(electrician,plumber and etc.).It has a section
+about reporting a problem(Report a problem), where the user has opportunity to describe a certain problem and if s/he has desire,s/he can
+<todo>snap it with the camera and send it on the main board of the application.</todo>

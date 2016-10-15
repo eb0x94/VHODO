@@ -34,7 +34,7 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".NeighbourActivity" />
         <activity android:name=".MechanicActivity" />
-        <activity android:name=".AboutActivity"></activity>
+        <activity android:name=".AboutActivity"/>
     </application>
 
 </manifest>
