@@ -4,3 +4,5 @@
 към централният екран на приложението.</todo>
 
 Github link: https://github.com/eb0x94/VHODO
+
+Contributors: eb0x94 и viliom1
